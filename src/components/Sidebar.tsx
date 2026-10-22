@@ -29,18 +29,14 @@ export function Sidebar() {
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.04 * i, duration: 0.25 }}
               onClick={() => scrollTo(section.id)}
-              className={`group flex items-center justify-between w-full text-left px-3.5 py-2 rounded-md text-sm font-medium transition-all cursor-pointer ${
+              className={`group flex items-center justify-between w-full text-left px-3.5 py-2 rounded-md text-sm font-medium transition-colors duration-150 cursor-pointer ${
                 isActive
                   ? 'bg-secondary text-foreground font-semibold shadow-xs'
                   : 'text-muted-foreground hover:text-foreground hover:bg-muted/60'
               }`}
             >
               <span>{t(section.label)}</span>
-              {isActive && (
-                <motion.span layoutId="nav-indicator">
-                  <ChevronRight className="h-4 w-4 text-foreground" />
-                </motion.span>
-              )}
+              {isActive && <ChevronRight className="h-4 w-4 text-foreground" />}
             </motion.button>
           );
         })}
@@ -49,7 +45,7 @@ export function Sidebar() {
       <Separator />
 
       {/* Social links */}
-      <div className="flex flex-col gap-2">
+      <div className="flex gap-2">
         <Button variant="outline" size="sm" className="h-9 justify-start gap-2.5 text-xs group px-3.5" asChild>
           <a href={identity.github} target="_blank" rel="noopener noreferrer">
             <GithubIcon size={16} />

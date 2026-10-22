@@ -147,23 +147,71 @@ export const experiences: ExperienceEntry[] = [
 ];
 
 // ── 5. PROJECTS ──────────────────────────────────────────────
+export type ProjectCategory = 'personal' | 'academic' | 'professional';
+
 export interface ProjectEntry {
   id: string;
   title: string;
+  category: ProjectCategory;
+  year: string;
   subtitle: { en: string; fr: string };
   description: { en: string; fr: string };
   architecture: { en: string; fr: string };
   challenges: { en: string[]; fr: string[] };
   tags: string[];
+  image?: string;
   repoUrl?: string;
   demoUrl?: string;
-  featured: boolean;
+  playUrl?: string;
 }
+
+export const projectCategoryLabels: Record<ProjectCategory, { en: string; fr: string }> = {
+  personal: { en: 'Personal', fr: 'Personnel' },
+  academic: { en: 'Academic', fr: 'Académique' },
+  professional: { en: 'Professional', fr: 'Professionnel' },
+};
 
 export const projects: ProjectEntry[] = [
   {
+    id: 'copi',
+    title: 'Copi',
+    category: 'personal',
+    year: '2026',
+    subtitle: {
+      en: '2D Platformer & Puzzle Game',
+      fr: 'Jeu de plateforme & puzzle 2D',
+    },
+    description: {
+      en: 'A 2D puzzle-platformer video game developed with Godot Engine and GDScript. Features physics-based puzzles, interactive triggers, level transitions, and custom game mechanics.',
+      fr: 'Jeu vidéo de réflexion et plateforme 2D développé avec Godot Engine et GDScript. Énigmes basées sur la physique, mécanismes interactifs (boutons, portes, pièges), transitions de niveaux et mécaniques personnalisées.',
+    },
+    architecture: {
+      en: 'Engineered with Godot 4. Modular node and scene tree separating level scenes, interactive game objects (doors, pressure buttons, fall detectors), player state machine, and dynamic pause/level menus. Exported to WebAssembly/HTML5 for instant in-browser play.',
+      fr: 'Conçu avec Godot 4. Architecture modulaire en arbre de scènes séparant niveaux, objets interactifs (portes, boutons poussoirs, détecteurs de chute), machine à états du joueur et menus de pause/sélection. Exporté en WebAssembly/HTML5 pour jouer directement dans le navigateur.',
+    },
+    challenges: {
+      en: [
+        'Fine-tuning 2D character physics, jump curves, and collision shapes for responsive platforming controls.',
+        'Architecting reusable scene templates for rapid level design and clean separation of concerns.',
+        'Compiling and optimizing assets for smooth zero-install WebAssembly execution on the web.',
+      ],
+      fr: [
+        'Ajustement fin de la physique 2D, des courbes de saut et des masques de collision pour un contrôle réactif.',
+        'Conception de templates de scènes réutilisables pour le level design et une séparation claire des responsabilités.',
+        'Compilation et optimisation des assets pour une exécution WebAssembly fluide sans installation dans le navigateur.',
+      ],
+    },
+    tags: ['Godot', 'GDScript', 'Game Dev'],
+    image: '/images/projects/copi.png',
+    playUrl: '/games/copi/index.html',
+    repoUrl: 'https://github.com/G8LD/copi',
+    demoUrl: '',
+  },
+  {
     id: 'uniride',
     title: 'UniRide',
+    category: 'academic',
+    year: '2024',
     subtitle: {
       en: 'Microservices Carpooling Platform',
       fr: 'Plateforme de Covoiturage Microservices',
@@ -188,10 +236,9 @@ export const projects: ProjectEntry[] = [
         'Coordination des migrations de schéma de base de données entre services dans une équipe de 4.',
       ],
     },
-    tags: ['React', 'Python', 'FastAPI', 'PostgreSQL', 'Docker', 'Microservices', 'REST API'],
+    tags: ['React', 'Python', 'FastAPI', 'PostgreSQL'],
     repoUrl: 'https://github.com/G8LD',
     demoUrl: '',
-    featured: true,
   },
 ];
 

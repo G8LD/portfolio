@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { LangProvider } from '@/context/LangContext';
 import { Sidebar } from '@/components/Sidebar';
@@ -9,8 +10,43 @@ import { Projects } from '@/components/Projects';
 import { Skills } from '@/components/Skills';
 import { Education } from '@/components/Education';
 import { Contact } from '@/components/Contact';
+import { GamePlayer } from '@/components/GamePlayer';
 
 function Layout() {
+  const [currentGame, setCurrentGame] = useState<string | null>(() => {
+    if (typeof window !== 'undefined' && window.location.hash.startsWith('#/play/')) {
+      return window.location.hash.replace('#/play/', '');
+    }
+    return null;
+  });
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash.startsWith('#/play/')) {
+        setCurrentGame(window.location.hash.replace('#/play/', ''));
+      } else if (currentGame) {
+        setCurrentGame(null);
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, [currentGame]);
+
+  const handlePlayGame = (gameId: string) => {
+    window.location.hash = `#/play/${gameId}`;
+    setCurrentGame(gameId);
+  };
+
+  const handleBackFromGame = () => {
+    window.location.hash = '#projects';
+    setCurrentGame(null);
+  };
+
+  if (currentGame === 'copi') {
+    return <GamePlayer onBack={handleBackFromGame} />;
+  }
+
   return (
     <div className="min-h-screen bg-background text-foreground transition-colors selection:bg-primary selection:text-primary-foreground">
       {/* Mobile header (hidden on desktop) */}
@@ -30,7 +66,7 @@ function Layout() {
           <Intro />
           <About />
           <Experience />
-          <Projects />
+          <Projects onPlayGame={handlePlayGame} />
           <Skills />
           <Education />
           <Contact />
@@ -43,7 +79,7 @@ function Layout() {
           <Intro />
           <About />
           <Experience />
-          <Projects />
+          <Projects onPlayGame={handlePlayGame} />
           <Skills />
           <Education />
           <Contact />
