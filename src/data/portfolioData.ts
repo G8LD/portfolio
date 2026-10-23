@@ -173,6 +173,39 @@ export const projectCategoryLabels: Record<ProjectCategory, { en: string; fr: st
 
 export const projects: ProjectEntry[] = [
   {
+    id: 'clap',
+    title: 'Clap',
+    category: 'personal',
+    year: '2025',
+    subtitle: {
+      en: 'Random Film Picker',
+      fr: 'Sélecteur de Films Aléatoire',
+    },
+    description: {
+      en: 'A web app that picks a random film from TMDB based on your filters (genre, rating, release year, runtime, country). Keeps a watch history, deep-links to a chosen film, and plays trailers in a modal.',
+      fr: 'Application web qui tire un film au hasard depuis TMDB selon vos filtres (genre, note, année, durée, pays). Conserve un historique, propose un lien direct vers un film choisi et lit les bandes-annonces dans une modale.',
+    },
+    architecture: {
+      en: 'Next.js 15 (App Router) deployed to Cloudflare Workers via OpenNext. Server-side Route Handlers proxy the TMDB API so the token never reaches the client; filters are URL-synced and debounced; history is persisted in localStorage. UI built with MUI; images optimised through the Cloudflare Images binding.',
+      fr: 'Next.js 15 (App Router) déployé sur Cloudflare Workers via OpenNext. Des Route Handlers côté serveur relaient l\'API TMDB pour que le token ne touche jamais le client ; les filtres sont synchronisés dans l\'URL et debouncés ; l\'historique est persisté en localStorage. Interface construite avec MUI ; images optimisées via le binding Cloudflare Images.',
+    },
+    challenges: {
+      en: [
+        'Keeping the TMDB token server-side by proxying every request through local API routes.',
+        'Picking a genuinely random, not-yet-seen film from TMDB\'s paginated discover endpoint, with a fallback once every match has been shown.',
+        'Making the filters shareable via the URL while debouncing updates to avoid request spam.',
+      ],
+      fr: [
+        'Garder le token TMDB côté serveur en relayant chaque requête via des routes API locales.',
+        'Tirer un film réellement aléatoire et non déjà vu depuis l\'endpoint discover paginé de TMDB, avec un repli une fois tous les films parcourus.',
+        'Rendre les filtres partageables via l\'URL tout en debouncant les mises à jour pour éviter les requêtes superflues.',
+      ],
+    },
+    tags: ['Next.js', 'TypeScript', 'MUI', 'Cloudflare Workers', 'TMDB API'],
+    repoUrl: 'https://github.com/G8LD/clap',
+    demoUrl: 'https://clap.dash-cloudflare-com-epilogue708.workers.dev',
+  },
+  {
     id: 'copi',
     title: 'Copi',
     category: 'personal',
