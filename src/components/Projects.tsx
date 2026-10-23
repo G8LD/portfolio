@@ -167,6 +167,24 @@ export function Projects({ onPlayGame }: ProjectsProps) {
                       </Button>
                     )}
 
+                    {project.demoUrl && (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="gap-1.5 text-xs h-8 px-3 cursor-pointer group"
+                        asChild
+                      >
+                        <a
+                          href={project.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <span>{lang === 'fr' ? 'Démo' : 'Demo'}</span>
+                          <SquareArrowOutUpRight className="text-muted-foreground group-hover:text-foreground transition-colors" />
+                        </a>
+                      </Button>
+                    )}
+
                     {project.repoUrl && (
                       <Button variant="outline" size="sm" className="gap-2 text-xs group" asChild>
                         <a
@@ -178,20 +196,6 @@ export function Projects({ onPlayGame }: ProjectsProps) {
                           <GithubIcon size={14} />
                           <span>GitHub</span>
                           <SquareArrowOutUpRight className="text-muted-foreground group-hover:text-foreground transition-colors" />
-                        </a>
-                      </Button>
-                    )}
-
-                    {project.demoUrl && (
-                      <Button size="sm" className="gap-1.5 text-xs" asChild>
-                        <a
-                          href={project.demoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1.5"
-                        >
-                          <SquareArrowOutUpRight className="h-3.5 w-3.5" />
-                          <span>{t({ en: 'Demo', fr: 'Démo' })}</span>
                         </a>
                       </Button>
                     )}

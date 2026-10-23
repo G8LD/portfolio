@@ -199,9 +199,10 @@ export const projects: ProjectEntry[] = [
         'Rendre les filtres partageables via l\'URL tout en debouncant les mises à jour pour éviter les requêtes superflues.',
       ],
     },
-    tags: ['Next.js', 'TypeScript', 'MUI', 'Cloudflare Workers', 'TMDB API'],
+    tags: ['Next.js', 'TypeScript', 'MUI', 'TMDB API'],
+    image: '/images/projects/clap.png',
     repoUrl: 'https://github.com/G8LD/clap',
-    demoUrl: 'https://clap.dash-cloudflare-com-epilogue708.workers.dev',
+    demoUrl: 'https://clap.visten.app',
   },
   {
     id: 'copi',
@@ -269,7 +270,7 @@ export const projects: ProjectEntry[] = [
     },
     tags: ['Python', 'Flask', 'Typescript', 'Angular', 'PostgreSQL'],
     image: '/images/projects/uniride.png',
-    repoUrl: 'https://github.com/G8LD',
+    repoUrl: '',
     demoUrl: '',
   },
   {
