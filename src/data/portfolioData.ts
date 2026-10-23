@@ -87,16 +87,14 @@ export const experiences: ExperienceEntry[] = [
         'Designed and built an end-to-end Cisco PnP zero-touch provisioning platform targeting a fleet of 9,000+ switches across all BPCE banking agencies.',
         'Engineers create provisioning workflows via an Angular portal, which seed device data into Nautobot; once a switch is plugged in, it auto-receives a minimal bootstrap config via PnP and Nautobot Golden Config (Jinja2 templates).',
         'Implemented a conditional step-validation system: specific workflow stages require engineer sign-off before the next step fires, triggering a Nautobot SSH job that pushes the full production config.',
-        'Backend built with Django Ninja (async REST API), frontend in Angular; integrated deeply with the Nautobot data model and job framework.',
       ],
       fr: [
         'Conception et développement d\'une plateforme de provisionnement zero-touch Cisco PnP couvrant plus de 9 000 switches sur l\'ensemble des agences du groupe BPCE.',
         'Les ingénieurs créent des workflows de provisionnement via un portail Angular, qui alimentent les données d\'équipements dans Nautobot ; au démarrage du switch, il reçoit automatiquement une configuration minimale via PnP et Nautobot Golden Config (templates Jinja2).',
         'Mise en place d\'un système de validation d\'étapes conditionnel : certaines étapes du workflow requièrent la validation d\'un ingénieur avant de déclencher l\'étape suivante, qui lance un job Nautobot envoyant la configuration complète en production via SSH.',
-        'Backend réalisé avec Django Ninja (API REST asynchrone), frontend en Angular ; intégration poussée avec le modèle de données et le framework de jobs Nautobot.',
       ],
     },
-    tags: ['Python', 'Django Ninja', 'Angular', 'TypeScript', 'Nautobot', 'Cisco PnP', 'Jinja2', 'PostgreSQL'],
+    tags: ['Python', 'Django Ninja', 'Nautobot', 'Cisco PnP', 'Jinja2', 'TypeScript', 'Angular', 'PostgreSQL'],
   },
   {
     company: 'BPCE Infogérance & Technologies',
@@ -120,7 +118,7 @@ export const experiences: ExperienceEntry[] = [
         'Contribution à une application frontend Angular améliorant l\'affichage et la navigation des données réseau dans l\'écosystème Nautobot.',
       ],
     },
-    tags: ['Python', 'Django', 'Nautobot', 'Angular', 'TypeScript', 'PostgreSQL'],
+    tags: ['Python', 'Django', 'Nautobot', 'TypeScript', 'Angular', 'PostgreSQL'],
   },
   {
     company: 'BPCE Infogérance & Technologies',
@@ -246,16 +244,16 @@ export const projects: ProjectEntry[] = [
     category: 'academic',
     year: '2024',
     subtitle: {
-      en: 'Microservices Carpooling Platform',
-      fr: 'Plateforme de Covoiturage Microservices',
+      en: 'Carpooling Platform',
+      fr: 'Plateforme de Covoiturage',
     },
     description: {
-      en: 'A full-stack carpooling application built for university students, designed with a microservices architecture. Handles real-time ride matching, booking, and user notifications.',
-      fr: "Application de covoiturage full-stack conçue pour les étudiants universitaires, architecturée en microservices. Gère le matching de trajets en temps réel, la réservation et les notifications.",
+      en: 'A full-stack carpooling application built for university students, designed with a architecture. Handles real-time ride matching, booking, and user notifications.',
+      fr: "Application de covoiturage full-stack conçue pour les étudiants universitaires. Gère le matching de trajets en temps réel, la réservation et les notifications.",
     },
     architecture: {
-      en: 'React frontend → API Gateway → independent microservices (Users, Rides, Notifications) → PostgreSQL databases per service. Containerised with Docker Compose for local development and deployed with a CI/CD pipeline.',
-      fr: "Frontend React → API Gateway → microservices indépendants (Utilisateurs, Trajets, Notifications) → bases PostgreSQL par service. Conteneurisé avec Docker Compose en développement local et déployé via pipeline CI/CD.",
+      en: 'React frontend → API Gateway → independent (Users, Rides, Notifications) → PostgreSQL databases per service. Containerised with Docker Compose for local development and deployed with a CI/CD pipeline.',
+      fr: "Frontend React → API Gateway → indépendants (Utilisateurs, Trajets, Notifications) → bases PostgreSQL par service. Conteneurisé avec Docker Compose en développement local et déployé via pipeline CI/CD.",
     },
     challenges: {
       en: [
@@ -269,8 +267,43 @@ export const projects: ProjectEntry[] = [
         'Coordination des migrations de schéma de base de données entre services dans une équipe de 4.',
       ],
     },
-    tags: ['React', 'Python', 'FastAPI', 'PostgreSQL'],
+    tags: ['Python', 'Flask', 'Typescript', 'Angular', 'PostgreSQL'],
+    image: '/images/projects/uniride.png',
     repoUrl: 'https://github.com/G8LD',
+    demoUrl: '',
+  },
+  {
+    id: 'letyran',
+    title: 'Le Tyran',
+    category: 'academic',
+    year: '2023',
+    subtitle: {
+      en: '2D Action-Adventure RPG in Java',
+      fr: 'Jeu d’Aventure RPG 2D en Java',
+    },
+    description: {
+      en: 'A top-down 2D action-adventure RPG game developed in Java with JavaFX. Features a tilemap rendering engine, inventory and crafting systems, collision detection, sprite animations, NPC dialogue, and combat against multiple enemy types.',
+      fr: 'Jeu d’action-aventure RPG 2D en vue du dessus développé en Java avec JavaFX. Intègre un moteur de tuiles (tilemaps), un système complet d’inventaire et de fabrication (crafting), gestion des collisions, animations de sprites, dialogues avec les PNJ et combats contre différents types d’ennemis.',
+    },
+    architecture: {
+      en: 'Structured with strict MVC (Model-View-Controller) architecture using Java 17+ modules. Core game loop and business logic (entities, inventory, craft, physics) are completely decoupled from JavaFX rendering and FXML scenes.',
+      fr: 'Architecture MVC rigoureuse (Modèle-Vue-Contrôleur) avec modules Java 17+. La boucle de jeu et la logique métier (entités, inventaire, artisanat, physique) sont strictement découplées du rendu JavaFX et des scènes FXML.',
+    },
+    challenges: {
+      en: [
+        'Developing an efficient 2D tilemap renderer with multiple depth layers (ground, decor, obstacles).',
+        'Implementing clean decoupled MVC interactions allowing gameplay features to scale independently from UI views.',
+        'Handling real-time player states, collisions, animations, and crafting inventories.',
+      ],
+      fr: [
+        'Développement d’un moteur de tuiles 2D avec plusieurs couches de profondeur (sol, décors, obstacles).',
+        'Mise en place d’un modèle MVC découplé permettant de faire évoluer le gameplay indépendamment des vues.',
+        'Gestion en temps réel des états du joueur, des collisions, des animations de sprites et de l’inventaire.',
+      ],
+    },
+    tags: ['Java', 'JavaFX', 'Game Dev'],
+    image: '/images/projects/letyran.png',
+    repoUrl: 'https://github.com/G8LD/LeTyran',
     demoUrl: '',
   },
 ];

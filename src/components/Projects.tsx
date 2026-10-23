@@ -18,6 +18,7 @@ import {
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { GithubIcon } from './icons/GithubIcon';
 
 interface ProjectsProps {
@@ -29,6 +30,7 @@ export function Projects({ onPlayGame }: ProjectsProps) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-60px' });
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory | 'all'>('all');
+  const [enlargedImage, setEnlargedImage] = useState<string | null>(null);
 
   const sortedProjects = [...projects].sort(
     (a, b) => parseInt(b.year, 10) - parseInt(a.year, 10)
@@ -87,12 +89,17 @@ export function Projects({ onPlayGame }: ProjectsProps) {
               >
                 <Card className="h-full flex flex-col justify-between overflow-hidden">
                   {/* Top Image / Placeholder Header */}
-                  <div className="w-full aspect-[16/9] overflow-hidden bg-muted/40 border-b relative flex items-center justify-center">
+                  <div
+                    className={`w-full aspect-[16/9] overflow-hidden bg-muted/40 border-b relative flex items-center justify-center ${
+                      project.image ? 'cursor-zoom-in group' : ''
+                    }`}
+                    onClick={() => project.image && setEnlargedImage(project.image)}
+                  >
                     {project.image ? (
                       <img
                         src={project.image}
                         alt={project.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover transition-opacity duration-200 group-hover:opacity-90"
                         loading="lazy"
                       />
                     ) : (
@@ -195,6 +202,21 @@ export function Projects({ onPlayGame }: ProjectsProps) {
           </AnimatePresence>
         </div>
       </motion.div>
+
+      {/* Lightbox / Enlarged Image Dialog */}
+      <Dialog open={!!enlargedImage} onOpenChange={(open) => !open && setEnlargedImage(null)}>
+        <DialogContent
+          className="max-w-[95vw] w-fit p-0 border-none bg-transparent shadow-none max-h-[95vh] overflow-visible focus:outline-none flex items-center justify-center cursor-zoom-out"
+          onClick={() => setEnlargedImage(null)}
+        >
+          <DialogTitle className="sr-only">Image</DialogTitle>
+          <img
+            src={enlargedImage || ''}
+            alt=""
+            className="max-h-[92vh] max-w-[95vw] w-auto h-auto object-contain rounded-lg shadow-2xl select-none"
+          />
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }
